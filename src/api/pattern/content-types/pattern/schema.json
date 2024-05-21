@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "patterns",
+  "info": {
+    "singularName": "pattern",
+    "pluralName": "patterns",
+    "displayName": "Pattern",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "sommario": {
+      "type": "text",
+      "required": true
+    },
+    "descrizione": {
+      "type": "text",
+      "required": true
+    },
+    "problema": {
+      "type": "text"
+    },
+    "soluzione": {
+      "type": "text",
+      "required": true
+    },
+    "esempio": {
+      "type": "text"
+    },
+    "strategie": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::strategie.strategie",
+      "inversedBy": "patterns"
+    }
+  }
+}
