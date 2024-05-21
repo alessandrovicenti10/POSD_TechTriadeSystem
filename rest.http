@@ -1,0 +1,42 @@
+
+GET http://localhost:1337/api/principis
+Authorization: Bearer d653c0a7b62f7ce488f1dd03ea1d22f31349bdfb3c857dc1f65ab4a7e0efa0932f6218e437d8e716cb448ddeb338bb9d4ad136e15389685a4a085686354227119b1eea5dd347c69e28e3ea0f7b53ba2d36f7a95679be53f7fa4cb01ca9a73e579d476dcc0909349e4878a54fd87414ab83fe6e17fc15d2d673e5ee3f9c967f88
+###
+
+GET http://localhost:1337/api/principis?populate=strategia
+Authorization: Bearer d653c0a7b62f7ce488f1dd03ea1d22f31349bdfb3c857dc1f65ab4a7e0efa0932f6218e437d8e716cb448ddeb338bb9d4ad136e15389685a4a085686354227119b1eea5dd347c69e28e3ea0f7b53ba2d36f7a95679be53f7fa4cb01ca9a73e579d476dcc0909349e4878a54fd87414ab83fe6e17fc15d2d673e5ee3f9c967f88
+
+###
+
+GET http://localhost:1337/api/strategies?populate=patterns
+
+###
+
+
+POST http://localhost:1337/api/principis
+Content-Type: application/json
+Authorization: Bearer d653c0a7b62f7ce488f1dd03ea1d22f31349bdfb3c857dc1f65ab4a7e0efa0932f6218e437d8e716cb448ddeb338bb9d4ad136e15389685a4a085686354227119b1eea5dd347c69e28e3ea0f7b53ba2d36f7a95679be53f7fa4cb01ca9a73e579d476dcc0909349e4878a54fd87414ab83fe6e17fc15d2d673e5ee3f9c967f88
+
+
+{
+    "data": {
+        "name": "Data protection bd2",
+        "descrizione": "esempio di descrizione di Data protection by design and by default pt.2",
+        "strategia": "1"
+    }
+}
+
+###
+PUT http://localhost:1337/api/principis/1
+Content-Type: application/json
+
+{
+    "data": {
+        "descrizione": "esempio di descrizione del primo principio"
+    }
+}
+
+
+###
+DELETE http://localhost:1337/api/principis/5
+Authorization: Bearer d653c0a7b62f7ce488f1dd03ea1d22f31349bdfb3c857dc1f65ab4a7e0efa0932f6218e437d8e716cb448ddeb338bb9d4ad136e15389685a4a085686354227119b1eea5dd347c69e28e3ea0f7b53ba2d36f7a95679be53f7fa4cb01ca9a73e579d476dcc0909349e4878a54fd87414ab83fe6e17fc15d2d673e5ee3f9c967f88

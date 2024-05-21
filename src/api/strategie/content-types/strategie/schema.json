@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "strategies",
+  "info": {
+    "singularName": "strategie",
+    "pluralName": "strategies",
+    "displayName": "Strategia",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "descrizione": {
+      "type": "blocks",
+      "required": true
+    },
+    "principio": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::principi.principi",
+      "mappedBy": "strategia"
+    },
+    "patterns": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::pattern.pattern",
+      "mappedBy": "strategie"
+    }
+  }
+}

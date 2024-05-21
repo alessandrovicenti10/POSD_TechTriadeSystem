@@ -788,6 +788,126 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiPatternPattern extends Schema.CollectionType {
+  collectionName: 'patterns';
+  info: {
+    singularName: 'pattern';
+    pluralName: 'patterns';
+    displayName: 'Pattern';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    sommario: Attribute.Text & Attribute.Required;
+    descrizione: Attribute.Text & Attribute.Required;
+    problema: Attribute.Text;
+    soluzione: Attribute.Text & Attribute.Required;
+    esempio: Attribute.Text;
+    strategie: Attribute.Relation<
+      'api::pattern.pattern',
+      'manyToMany',
+      'api::strategie.strategie'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pattern.pattern',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pattern.pattern',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPrincipiPrincipi extends Schema.CollectionType {
+  collectionName: 'principis';
+  info: {
+    singularName: 'principi';
+    pluralName: 'principis';
+    displayName: 'Principio';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    strategia: Attribute.Relation<
+      'api::principi.principi',
+      'manyToMany',
+      'api::strategie.strategie'
+    >;
+    descrizione: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::principi.principi',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::principi.principi',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiStrategieStrategie extends Schema.CollectionType {
+  collectionName: 'strategies';
+  info: {
+    singularName: 'strategie';
+    pluralName: 'strategies';
+    displayName: 'Strategia';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    descrizione: Attribute.Blocks & Attribute.Required;
+    principio: Attribute.Relation<
+      'api::strategie.strategie',
+      'manyToMany',
+      'api::principi.principi'
+    >;
+    patterns: Attribute.Relation<
+      'api::strategie.strategie',
+      'manyToMany',
+      'api::pattern.pattern'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::strategie.strategie',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::strategie.strategie',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -806,6 +926,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::pattern.pattern': ApiPatternPattern;
+      'api::principi.principi': ApiPrincipiPrincipi;
+      'api::strategie.strategie': ApiStrategieStrategie;
     }
   }
 }
