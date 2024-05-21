@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "principis",
+  "info": {
+    "singularName": "principi",
+    "pluralName": "principis",
+    "displayName": "Principio",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "strategia": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::strategie.strategie",
+      "inversedBy": "principio"
+    },
+    "descrizione": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
