@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blog_post_examples",
+  "info": {
+    "singularName": "blog-post-example",
+    "pluralName": "blog-post-examples",
+    "displayName": "BlogPostExample"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "string"
+    },
+    "Content": {
+      "type": "richtext"
+    },
+    "Example": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-properties.example"
+    }
+  }
+}
