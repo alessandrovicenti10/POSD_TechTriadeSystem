@@ -40,3 +40,46 @@ Content-Type: application/json
 ###
 DELETE http://localhost:1337/api/principis/5
 Authorization: Bearer d653c0a7b62f7ce488f1dd03ea1d22f31349bdfb3c857dc1f65ab4a7e0efa0932f6218e437d8e716cb448ddeb338bb9d4ad136e15389685a4a085686354227119b1eea5dd347c69e28e3ea0f7b53ba2d36f7a95679be53f7fa4cb01ca9a73e579d476dcc0909349e4878a54fd87414ab83fe6e17fc15d2d673e5ee3f9c967f88
+
+
+#autenticazione utente 
+###
+POST http://localhost:1337/api/auth/local
+Content-Type: application/json
+
+{
+    "identifier": "Pippo",
+    "password": "123456"
+}
+
+#inserimento di un elemento da parte di un utente autenticato
+###
+POST http://localhost:1337/api/principis
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzE2Mzg1MjcxLCJleHAiOjE3MTg5NzcyNzF9.TTjlQGRskaEAjuun2SeUo2m_y4y-2eDEu0f2iXOROsA
+
+{
+    "data": {
+        "name": "Principio 2",
+        "descrizione": "Esempio descrizione di un altro principio"
+    }
+}
+
+
+###
+#creazione utente 
+POST http://localhost:1337/api/auth/local/register
+Content-Type: application/json
+
+{
+    "username": "test",
+    "email": "test@test.com",
+    "password": "test123"
+}
+
+###
+#chiamata api creata 'prisma'
+GET http://localhost:1337/api/prisma
+
+###
+GET http://localhost:1337/api/principis

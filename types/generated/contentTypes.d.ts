@@ -742,11 +742,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
-      Attribute.Required &
       Attribute.Unique &
       Attribute.SetMinMaxLength<{
         minLength: 3;
@@ -771,6 +769,8 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    nome: Attribute.String;
+    cognome: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -781,6 +781,40 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBlogPostExampleBlogPostExample
+  extends Schema.CollectionType {
+  collectionName: 'blog_post_examples';
+  info: {
+    singularName: 'blog-post-example';
+    pluralName: 'blog-post-examples';
+    displayName: 'BlogPostExample';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Slug: Attribute.String;
+    Content: Attribute.RichText;
+    Example: Attribute.Component<'page-properties.example', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::blog-post-example.blog-post-example',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::blog-post-example.blog-post-example',
       'oneToOne',
       'admin::user'
     > &
@@ -926,6 +960,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::blog-post-example.blog-post-example': ApiBlogPostExampleBlogPostExample;
       'api::pattern.pattern': ApiPatternPattern;
       'api::principi.principi': ApiPrincipiPrincipi;
       'api::strategie.strategie': ApiStrategieStrategie;
